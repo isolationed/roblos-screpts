@@ -1,4 +1,3 @@
-
 local ScreenGui = Instance.new("ScreenGui")
 local ImageLabel = Instance.new("ImageLabel")
 local TextLabel = Instance.new("TextLabel")
@@ -16,6 +15,7 @@ end
 mouse.Move:Connect(onMouseMove)
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.ResetOnSpawn = false
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 ImageLabel.Parent = ScreenGui
