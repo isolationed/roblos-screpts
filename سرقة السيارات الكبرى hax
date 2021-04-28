@@ -8,7 +8,7 @@ local Frame = Instance.new("Frame")
 
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
-	local function onMouseMove()
+local function onMouseMove()
 	Frame.BackgroundTransparency = 0
 	Frame.Position = UDim2.new(0, mouse.X, 0, mouse.Y)
 end
@@ -103,6 +103,66 @@ ScrollingFrame.ScrollBarThickness = 5
 
 UIListLayout.Parent = ScrollingFrame
 UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+game.Players.PlayerAdded:Connect(function(plr)
+	local TextButton_2 = Instance.new("TextButton")
+	TextButton_2.Parent = ScrollingFrame
+	TextButton_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextButton_2.BackgroundTransparency = 0.880
+	TextButton_2.Size = UDim2.new(0, 191, 0, 37)
+	TextButton_2.Font = Enum.Font.SourceSans
+	TextButton_2.Text = plr.Name
+	TextButton_2.TextColor3 = Color3.fromRGB(0, 0, 0)
+	TextButton_2.TextSize = 14.000
+	TextButton_2.MouseButton1Down:Connect(function()
+		local success, fail = pcall(function()
+			if game:GetService("Players").LocalPlayer.Character.Sniper then
+				
+			else
+				
+			end
+		end)
+	
+		if not fail then
+			local args = {
+				[1] = game:GetService("Players").LocalPlayer.Character.Sniper,
+				[2] = {
+					["p"] = Vector3.new(151.38786315918, 68.701515197754, -128.77239990234),
+					["pid"] = 1,
+					["part"] = game:GetService("Players")[plr.Name].Character.Head,
+					["d"] = 10.882934570313,
+					["maxDist"] = 10.806711196899,
+					["h"] = game:GetService("Players")[plr.Name].Character.Humanoid,
+					["m"] = Enum.Material.Plastic,
+					["n"] = Vector3.new(-0.93146830797195, 0.32695114612579, -0.15959258377552),
+					["t"] = 0.89826599628404,
+					["sid"] = 2
+				}
+			}
+			game:GetService("ReplicatedStorage").WeaponsSystem.Network.WeaponHit:FireServer(unpack(args))
+		else
+			game:GetService("StarterGui"):SetCore(
+			"SendNotification",
+			{
+				Title = "Bruh",
+				Text = "Equip the fucking sniper"
+			}
+	)
+			return
+		end
+	end)
+end)
+
+game.Players.PlayerRemoving:Connect(function(plr)
+    local buttholeshitfart = ScrollingFrame:GetChildren()
+	for i,v in pairs(buttholeshitfart) do
+		if v:IsA("TextButton") then
+			if v.Text == plr.Name then
+                v:Destroy()
+            end
+		end
+	end
+end)
 
 for i, v in pairs(game.Players:GetPlayers()) do
 	local TextButton_2 = Instance.new("TextButton")
