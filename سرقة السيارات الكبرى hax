@@ -1,3 +1,4 @@
+
 local ScreenGui = Instance.new("ScreenGui")
 local ImageLabel = Instance.new("ImageLabel")
 local TextLabel = Instance.new("TextLabel")
@@ -81,14 +82,29 @@ TextButton.MouseButton1Down:Connect(function()
 			end
 		end
 	else
-		game:GetService("StarterGui"):SetCore(
-        "SendNotification",
-        {
-			Title = "Bruh",
-			Text = "Equip the fucking sniper"
-		}
-)
-		return
+		for i, v in pairs(game.Players:GetPlayers()) do
+			if v.Name == game.Players.LocalPlayer.Name then
+			else
+				game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack.Sniper)
+				local args = {
+					[1] = game:GetService("Players").LocalPlayer.Character.Sniper,
+					[2] = {
+						["p"] = Vector3.new(151.38786315918, 68.701515197754, -128.77239990234),
+						["pid"] = 1,
+						["part"] = game:GetService("Players")[v.Name].Character.Head,
+						["d"] = 10.882934570313,
+						["maxDist"] = 10.806711196899,
+						["h"] = game:GetService("Players")[v.Name].Character.Humanoid,
+						["m"] = Enum.Material.Plastic,
+						["n"] = Vector3.new(-0.93146830797195, 0.32695114612579, -0.15959258377552),
+						["t"] = 0.89826599628404,
+						["sid"] = 2
+					}
+				}
+				game:GetService("ReplicatedStorage").WeaponsSystem.Network.WeaponHit:FireServer(unpack(args))
+				game:GetService("Players").LocalPlayer.Character.Humanoid:UnequipTools()
+			end
+		end
 	end
 end)
 
@@ -141,25 +157,35 @@ game.Players.PlayerAdded:Connect(function(plr)
 			}
 			game:GetService("ReplicatedStorage").WeaponsSystem.Network.WeaponHit:FireServer(unpack(args))
 		else
-			game:GetService("StarterGui"):SetCore(
-			"SendNotification",
-			{
-				Title = "Bruh",
-				Text = "Equip the fucking sniper"
+			game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack.Sniper)
+			local args = {
+				[1] = game:GetService("Players").LocalPlayer.Character.Sniper,
+				[2] = {
+					["p"] = Vector3.new(151.38786315918, 68.701515197754, -128.77239990234),
+					["pid"] = 1,
+					["part"] = game:GetService("Players")[plr.Name].Character.Head,
+					["d"] = 10.882934570313,
+					["maxDist"] = 10.806711196899,
+					["h"] = game:GetService("Players")[plr.Name].Character.Humanoid,
+					["m"] = Enum.Material.Plastic,
+					["n"] = Vector3.new(-0.93146830797195, 0.32695114612579, -0.15959258377552),
+					["t"] = 0.89826599628404,
+					["sid"] = 2
+				}
 			}
-	)
-			return
+			game:GetService("ReplicatedStorage").WeaponsSystem.Network.WeaponHit:FireServer(unpack(args))
+			game:GetService("Players").LocalPlayer.Character.Humanoid:UnequipTools()
 		end
 	end)
 end)
 
 game.Players.PlayerRemoving:Connect(function(plr)
-    local buttholeshitfart = ScrollingFrame:GetChildren()
-	for i,v in pairs(buttholeshitfart) do
+	local buttholeshitfart = ScrollingFrame:GetChildren()
+	for i, v in pairs(buttholeshitfart) do
 		if v:IsA("TextButton") then
 			if v.Text == plr.Name then
-                v:Destroy()
-            end
+				v:Destroy()
+			end
 		end
 	end
 end)
@@ -201,19 +227,28 @@ for i, v in pairs(game.Players:GetPlayers()) do
 			}
 			game:GetService("ReplicatedStorage").WeaponsSystem.Network.WeaponHit:FireServer(unpack(args))
 		else
-			game:GetService("StarterGui"):SetCore(
-			"SendNotification",
-			{
-				Title = "Bruh",
-				Text = "Equip the fucking sniper"
+			game:GetService("Players").LocalPlayer.Character.Humanoid:EquipTool(game:GetService("Players").LocalPlayer.Backpack.Sniper)
+			local args = {
+				[1] = game:GetService("Players").LocalPlayer.Character.Sniper,
+				[2] = {
+					["p"] = Vector3.new(151.38786315918, 68.701515197754, -128.77239990234),
+					["pid"] = 1,
+					["part"] = game:GetService("Players")[v.Name].Character.Head,
+					["d"] = 10.882934570313,
+					["maxDist"] = 10.806711196899,
+					["h"] = game:GetService("Players")[v.Name].Character.Humanoid,
+					["m"] = Enum.Material.Plastic,
+					["n"] = Vector3.new(-0.93146830797195, 0.32695114612579, -0.15959258377552),
+					["t"] = 0.89826599628404,
+					["sid"] = 2
+				}
 			}
-	)
-			return
+			game:GetService("ReplicatedStorage").WeaponsSystem.Network.WeaponHit:FireServer(unpack(args))
+			game:GetService("Players").LocalPlayer.Character.Humanoid:UnequipTools()
 		end
 	end)
 
 end
-
 local function LTXVW_fake_script()
 	local script = Instance.new('LocalScript', ImageLabel)
 
